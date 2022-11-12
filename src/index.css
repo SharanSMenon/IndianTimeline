@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   @apply box-border;
 }
@@ -17,18 +21,18 @@ body {
 /* The actual timeline (the vertical ruler) */
 .timeline::after {
   content: "";
-  @apply absolute w-2 bg-white top-0 bottom-0 left-1/2 -ml-1;
+  @apply absolute w-2 bg-white top-0 bottom-0 right-10 sm:left-1/2 right-10;
 }
 
 /* event around content */
 .event {
-  @apply w-1/2 bg-inherit relative py-[10] px-10;
+  @apply w-full sm:w-1/2 bg-inherit relative py-[10] pr-20 pl-10 sm:pr-10 sm:pl-10;
 }
 
 /* The circles on the timeline */
 .event::after {
   content: "";
-  @apply absolute w-[25px] h-[25px] -right-[17px] bg-white 
+  @apply absolute w-[25px] h-[25px] right-[1.9rem] sm:-right-[16px] bg-white 
   border-orange-500 border-4 border-solid z-10 rounded-full;
   top: 15px;
 }
@@ -40,30 +44,39 @@ body {
 
 /* Place the event to the right */
 .right {
-  @apply left-1/2;
+  @apply left-0 sm:left-1/2;
 }
 
 /* Add arrows to the left event (pointing right) */
+
+@layer utilities {
+  .border-right {
+    border: medium solid green;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent white transparent transparent;
+  }
+  .border-left {
+    border: medium solid white;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent white;
+  }
+}
+
 .left::before {
   content: " ";
-  @apply h-0 absolute top-[22px] w-0 z-10 right-[30px];
-  border: medium solid white;
-  border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent white;
+  @apply h-0 absolute top-[22px] w-0 z-10 right-[70px] sm:right-[30px] border-left;
 }
 
 /* Add arrows to the right event (pointing left) */
 .right::before {
   content: " ";
-  @apply h-0 absolute top-[22px] w-0 z-10 left-[30px];
-  border: medium solid white;
-  border-width: 10px 10px 10px 0;
-  border-color: transparent white transparent transparent;
+  @apply h-0 absolute top-[22px] w-0 z-10 
+  right-[70px] sm:left-[30px] border-left sm:border-right;
 }
 
 /* Fix the circle for events on the right side */
 .right::after {
-  @apply -left-[16px];
+  @apply sm:-left-[8px];
 }
 
 /* The actual content */
@@ -77,11 +90,11 @@ body {
 
 .name {
   @apply font-normal ml-2;
-} 
+}
 
 .large-name {
   @apply font-thin ml-2;
-} 
+}
 
 h1 {
   @apply text-5xl font-extrabold;
@@ -89,11 +102,11 @@ h1 {
 
 .heading {
   @apply w-full text-white 
-  px-10 py-5 relative mb-10;
+  px-10 py-5 relative mb-10 my-0 mx-auto max-w-6xl;
 }
 
 .navigation {
-  @apply flex flex-row gap-3 flex-wrap;
+  @apply flex flex-row gap-3 flex-wrap mt-7;
 }
 .navigation-item {
   @apply inline-block p-2 bg-white rounded-md hover:bg-slate-200;
