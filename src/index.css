@@ -1,0 +1,113 @@
+* {
+  @apply box-border;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-slate-600 font-sans;
+}
+/* The actual timeline (the vertical ruler) */
+.timeline {
+  @apply relative my-0 mx-auto max-w-6xl;
+}
+
+/* The actual timeline (the vertical ruler) */
+.timeline::after {
+  content: "";
+  @apply absolute w-2 bg-white top-0 bottom-0 left-1/2 -ml-1;
+}
+
+/* event around content */
+.event {
+  @apply w-1/2 bg-inherit relative py-[10] px-10;
+}
+
+/* The circles on the timeline */
+.event::after {
+  content: "";
+  @apply absolute w-[25px] h-[25px] -right-[17px] bg-white 
+  border-orange-500 border-4 border-solid z-10 rounded-full;
+  top: 15px;
+}
+
+/* Place the event to the left */
+.left {
+  @apply left-0;
+}
+
+/* Place the event to the right */
+.right {
+  @apply left-1/2;
+}
+
+/* Add arrows to the left event (pointing right) */
+.left::before {
+  content: " ";
+  @apply h-0 absolute top-[22px] w-0 z-10 right-[30px];
+  border: medium solid white;
+  border-width: 10px 0 10px 10px;
+  border-color: transparent transparent transparent white;
+}
+
+/* Add arrows to the right event (pointing left) */
+.right::before {
+  content: " ";
+  @apply h-0 absolute top-[22px] w-0 z-10 left-[30px];
+  border: medium solid white;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent white transparent transparent;
+}
+
+/* Fix the circle for events on the right side */
+.right::after {
+  @apply -left-[16px];
+}
+
+/* The actual content */
+.items {
+  @apply py-[20px] px-[20px] bg-white relative rounded-lg;
+}
+
+.year {
+  @apply text-2xl font-extrabold;
+}
+
+.name {
+  @apply font-normal ml-2;
+} 
+
+.large-name {
+  @apply font-thin ml-2;
+} 
+
+h1 {
+  @apply text-5xl font-extrabold;
+}
+
+.heading {
+  @apply w-full text-white 
+  px-10 py-5 relative mb-10;
+}
+
+.navigation {
+  @apply flex flex-row gap-3 flex-wrap;
+}
+.navigation-item {
+  @apply inline-block p-2 bg-white rounded-md hover:bg-slate-200;
+}
+
+.marker {
+  @apply text-slate-600;
+}
+
+a {
+  @apply text-black no-underline;
+}
+
+.scroll-to-top {
+  @apply fixed p-3 bottom-0 right-0 bg-orange-500 my-5 mr-5 z-20
+  rounded-full;
+}
